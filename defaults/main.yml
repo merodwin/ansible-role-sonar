@@ -1,0 +1,9 @@
+---
+# defaults file for ansible-role-sonar
+sonaqube_version: 5.6.1
+download_directory: /tmp
+
+sonar_install_folder: /opt/sonar
+
+sonar_group: sonar
+sonar_user: sonar

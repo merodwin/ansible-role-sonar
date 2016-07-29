@@ -1,0 +1,13 @@
+[Unit]
+Description=sonarqube server
+Requires=network.target
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart={{sonar_install_folder}}/latest/bin/sonar.sh start
+ExecStop={{sonar_install_folder:}}/latest/bin/sonar.sh stop
+User={{sonar_user}}
+
+[Install]
+WantedBy=multi-user.target
