@@ -21,7 +21,7 @@
   file: path="{{sonar_install_folder}}" state=directory owner="{{sonar_user}}" group="{{sonar_group}}" mode="755"
 
 - name: check if allredy installed
-  stat: path="{{sonar_install_folder}}/sonarqube-{{sonar_version}}"
+  stat: path="{{sonar_install_folder}}/sonarqube-{{sonaqube_version}}"
   register: installDir
 
 
@@ -29,7 +29,7 @@
 
   - name: untar sonar
     become: yes
-    unarchive: src="{{download_directory}}/sonar-{{sonar_version}}.zip" dest="{{sonar_install_folder}}" copy=no
+    unarchive: src="{{download_directory}}/sonarqube-{{sonaqube_version}}.zip" dest="{{sonar_install_folder}}" copy=no
     notify:
     - restart sonar service
 
@@ -37,7 +37,7 @@
     become: true
     file: path="{{sonar_install_folder}}" state=directory owner="{{sonar_user}}" group="{{sonar_group}}" mode="755" recurse=yes
 
-  - name: check if allredy installed
+  - name: check if other verion installed
     stat: path="{{sonar_install_folder}}/latest"
     register: latestDir
 
@@ -51,8 +51,8 @@
     when: latestDir.stat.exists == True
 
   - name: rename latest to last
-     command:  "mv {{sonar_install_folder}}/latest {{sonar_install_folder}}/last"
-     when: latestDir.stat.exists == True
+    command:  "mv {{sonar_install_folder}}/latest {{sonar_install_folder}}/last"
+    when: latestDir.stat.exists == True
 
 
-  when: installDir.stat.exists == False
+ when: installDir.stat.exists == False

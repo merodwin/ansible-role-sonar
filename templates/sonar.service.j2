@@ -6,7 +6,7 @@ After=syslog.target network.target
 [Service]
 Type=forking
 ExecStart={{sonar_install_folder}}/latest/bin/sonar.sh start
-ExecStop={{sonar_install_folder:}}/latest/bin/sonar.sh stop
+ExecStop={{sonar_install_folder}}/latest/bin/sonar.sh stop
 User={{sonar_user}}
 
 [Install]
