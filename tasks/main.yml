@@ -55,4 +55,4 @@
     when: latestDir.stat.exists == True
 
 
- when: installDir.stat.exists == False
+  when: installDir.stat.exists == False
